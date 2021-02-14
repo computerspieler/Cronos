@@ -23,12 +23,12 @@ struct GDT_Descriptor
 
 #define GDT_SEGMENT(base, limit, access, flags) \
 	(GDT_Entry) {								\
-		limit & 0xFFFF,							\
-		base & 0xFFFFFF, 						\
+		(uint32_t)(limit) & 0xFFFF,				\
+		(uint32_t)(base) & 0xFFFFFF, 			\
 		access,									\
-		limit >> 16 & 0xF,						\
+		(uint32_t)(limit) >> 16 & 0xF,			\
 		flags,									\
-		base >> 24 & 0xFF						\
+		(uint32_t)(base) >> 24 & 0xFF			\
 	}
 
 void GDT_initialize_table();
