@@ -2,4 +2,6 @@ binaries.*
 build.*
 toolchain
 tmp
-
+logs
+images
+.vscode
