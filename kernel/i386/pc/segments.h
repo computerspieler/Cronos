@@ -13,6 +13,6 @@
 #define USERLAND_DATA_SEGMENT_STR "$0x28"
 #define USERLAND_DATA_SEGMENT_INT 0x28
 
-void GDT_initialize_table();
+void	GDT_initialize_table();
 
 #endif

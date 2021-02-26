@@ -4,7 +4,10 @@
 #include "multiboot.h"
 #include "tss.h"
 
-static Multiboot_Info* bootloader_info;
+extern Multiboot_Info* bootloader_info;
 extern Task_State kernel_tss;
+
+extern uint32_t KERNEL_BASE_ADDRESS;
+extern uint32_t KERNEL_PAGE_SIZE;
 
 #endif

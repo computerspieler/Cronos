@@ -3,7 +3,7 @@
 
 #include "idt.h"
 
-void IDT_initialize_table();
-void general_interrupt_handler(uint32_t irq_id);
+void	IDT_initialize_table();
+void	general_interrupt_handler(uint32_t irq_id);
 
 #endif
