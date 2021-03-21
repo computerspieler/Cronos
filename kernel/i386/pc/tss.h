@@ -3,9 +3,9 @@
 
 #include <stddef.h>
 
-typedef struct Task_State Task_State;
+typedef struct Task_State_Segment Task_State_Segment;
 
-struct Task_State
+struct Task_State_Segment
 {
 	uint16_t link;	uint16_t unused_0;
 	uint32_t esp0;

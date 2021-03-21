@@ -9,6 +9,13 @@
 #define disable_interrupt()	\
 	asm("cli");
 
-void	outb(uint16_t port, uint8_t data);
+#define outb(port, data) 							\
+	asm volatile (									\
+		"mov %0, %%dx\n								\
+		 mov %1, %%al\n								\
+		 out %%al, %%dx"							\
+		:											\
+		: "r"((uint16_t) port), "r"((uint8_t) data)	\
+		: "%dx", "%al");
 
 #endif

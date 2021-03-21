@@ -2,7 +2,7 @@
 #include "segments.h"
 #include "tss.h"
 
-static Task_State kernel_tss;
+static Task_State_Segment kernel_tss;
 
 static GDT_Entry gdt_entries[6];
 
