@@ -9,13 +9,22 @@
 #define disable_interrupt()	\
 	asm("cli");
 
-#define outb(port, data) 							\
+#define outb(port, data) 								\
+	asm volatile (										\
+		"mov %0, %%dx\n									\
+		 mov %1, %%al\n									\
+		 out %%al, %%dx"								\
+		:												\
+		: "r"((uint16_t) (port)), "r"((uint8_t) (data))	\
+		: "%dx", "%al");
+
+#define inb(port, data) 							\
 	asm volatile (									\
-		"mov %0, %%dx\n								\
-		 mov %1, %%al\n								\
-		 out %%al, %%dx"							\
-		:											\
-		: "r"((uint16_t) port), "r"((uint8_t) data)	\
+		"mov %1, %%dx\n								\
+		 in %%dx, %%al\n							\
+		 mov %%al, %0"								\
+		: "=r"((uint8_t) (data))					\
+		: "r"((uint16_t) (port))					\
 		: "%dx", "%al");
 
 #endif

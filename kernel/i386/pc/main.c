@@ -38,9 +38,7 @@ void kmain(Multiboot_Info* info, uint32_t magic)
 	scheduler_add_task(task_a, 100);
 	scheduler_add_task(task_b, 100);
 
-	// Disable the PIC
-	outb(PIC_PORT_MASTER_DATA, PIC_COMMAND_DISABLE);
-	outb(PIC_PORT_SLAVE_DATA, PIC_COMMAND_DISABLE);
+	PIC_init();
 
 	enable_interrupt();
 
