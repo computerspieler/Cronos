@@ -12,16 +12,18 @@
 
 Multiboot_Info* bootloader_info;
 
+#define VIDEO_BASE_ADDRESS (uint8_t*) (0xB8000)
+
 void task_a()
 {
 	while(true)
-		outb(0xE9, 'A');
+		*VIDEO_BASE_ADDRESS = 'A';
 }
 
 void task_b()
 {
 	while(true)
-		outb(0xE9, 'B');
+		*VIDEO_BASE_ADDRESS = 'B';
 }
 
 void kmain(Multiboot_Info* info, uint32_t magic)
