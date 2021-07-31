@@ -1,0 +1,15 @@
+HOST_OS=linux
+EMULATOR=bochs
+BUILD_TYPE=debug
+BUILD_TARGET=i386
+BUILD_TARGET_MACHINE=pc
+
+BUILDDIR=$(BASEDIR)/build/$(BUILD_TARGET).$(BUILD_TARGET_MACHINE)
+BINDIR=$(BUILDDIR)/objects.$(BUILD_TYPE)
+OUTDIR=$(BUILDDIR)/binaries.$(BUILD_TYPE)
+
+IMG=$(BUILDDIR)/$(BUILD_TYPE).iso
+LOG=$(BUILDDIR)/log.txt
+
+include $(BASEDIR)/makefiles/host-$(HOST_OS).Makefile
+include $(BASEDIR)/makefiles/target-$(BUILD_TARGET)-$(BUILD_TARGET_MACHINE).Makefile

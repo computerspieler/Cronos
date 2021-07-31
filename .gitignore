@@ -1,7 +1,3 @@
-binaries.*
-build.*
-toolchain
+build
 tmp
-logs
-images
 .vscode

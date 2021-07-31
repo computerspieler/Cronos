@@ -25,8 +25,4 @@ char* strncat(char* dest, const char* src, size_t count);
 char* strstr(const char* haystack, const char* needle);
 char* strtok(const char* str, const char* delim);
 
-#ifndef COMPILE_LIBC
-	char* strtok_last_string;
-#endif
-
 #endif

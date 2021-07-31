@@ -1,5 +1,5 @@
 #include "string.h"
-
+	char* strtok_last_string;
 size_t strlen(const char* str)
 {
 	size_t length = 0;

@@ -6,10 +6,10 @@ SRCS=$(BUILD_TARGET)/$(BUILD_TARGET_MACHINE)/start.s \
 	 $(filter-out $(BUILD_TARGET)/$(BUILD_TARGET_MACHINE)/start.s,$(wildcard $(BUILD_TARGET)/$(BUILD_TARGET_MACHINE)/*.s)) \
 	 $(wildcard $(BUILD_TARGET)/$(BUILD_TARGET_MACHINE)/*.c)
 
-LIBDEP=libc-freestanding
+LIBDEP=libc
 
 build: CCFLAGS+=-Iarch/$(TARGET_ARCHITECTURE)
 build: LDFLAGS+=-T linker.ld -e start 
 build: $(OUTDIR)/kernel.elf
 
-include $(BASEDIR)/Makefiles/recipes.Makefile
+include $(BASEDIR)/makefiles/recipes.Makefile

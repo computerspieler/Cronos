@@ -1,4 +1,4 @@
-include $(BASEDIR)/Makefiles/config.Makefile
+include $(BASEDIR)/makefiles/config.Makefile
 
 ifdef LIBDEP
 	CCFLAGS+=$(patsubst %,-I$(BASEDIR)/libs/%,$(LIBDEP))
