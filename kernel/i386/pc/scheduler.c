@@ -2,6 +2,7 @@
 
 #include "task.h"
 #include "pagination.h"
+#include "segments.h"
 
 static Task tasks[MAX_TASKS];
 static int task_pointer;
@@ -42,9 +43,14 @@ int scheduler_add_task(void* code_entry, int code_segment_size)
 	task->state = RUNNING;
 
 	memset(&task->cpu_state, 0, sizeof(Task_Register_State));
-	task->cpu_state.eip = code_entry;
-	task->cpu_state.esp = stack_page;
+	task->cpu_state.cs = USERLAND_CODE_SEGMENT_INT | 3;
+	task->cpu_state.eip = code_entry;	
+	
 	task->cpu_state.cr0 = 0b1;
+	task->cpu_state.eflags = 0b1000000010;
+
+	task->cpu_state.esp = stack_page;
+	task->cpu_state.ss = USERLAND_DATA_SEGMENT_INT | 3;
 
 	return 0;
 }
@@ -59,5 +65,8 @@ void scheduler_switch_task()
 
 Task* scheduler_retrieve_actual_task()
 {
-	return &tasks[task_pointer];
+	if(task_pointer >= 0)
+		return &tasks[task_pointer];
+
+	return NULL;
 }

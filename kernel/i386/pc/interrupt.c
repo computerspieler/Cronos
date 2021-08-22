@@ -26,9 +26,14 @@ void IDT_initialize_table()
 }
 
 void general_interrupt_handler(uint32_t irq_id, Task_Register_State regs_state)
-{	
-	scheduler_retrieve_actual_task()->cpu_state = regs_state;
+{
+	Task* current_task = scheduler_retrieve_actual_task();
+	
+	if(current_task != NULL)
+		current_task->cpu_state = regs_state;
+
 	scheduler_switch_task();
+	
 	regs_state = scheduler_retrieve_actual_task()->cpu_state;
 	
 	PIC_send_EOI(irq_id);

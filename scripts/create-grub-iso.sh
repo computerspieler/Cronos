@@ -14,4 +14,4 @@ menuentry \"CyberOS\" {
 	multiboot /kernel.elf
 }" > $1/boot/grub/grub.cfg
 
-grub-mkrescue -o $2 $1 2> /dev/null
+grub-mkrescue -o $2 $1

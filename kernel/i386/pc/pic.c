@@ -31,9 +31,10 @@ void PIC_init()
 		PIT_SELECT_CHANNEL(0) |
 		PIT_ACCESS_LOW_BYTE   |
 		PIT_ACCESS_HIGH_BYTE  |
-		PIT_OPERATING_MODE(2)
+		PIT_OPERATING_MODE(3)
 	);
-	outb(PIT_PORT_CHANNEL_0, 100);
+	outb(PIT_PORT_CHANNEL_0, 0xFF);
+	outb(PIT_PORT_CHANNEL_0, 0xFF);
 }
 
 void PIC_send_EOI(int irq_id)

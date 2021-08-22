@@ -5,26 +5,38 @@
 .macro INTERRUPT_HANDLER id
 	.global irq\id\()_handler_entry
 	irq\id\()_handler_entry:
+# Save registers' state
 		pushal
-		pushfl
 		mov %cr0, %eax
 		push %eax
 		mov %cr3, %eax
 		push %eax
 		mov %cr4, %eax
 		push %eax
+		
 		mov $\id, %eax
 		push %eax
 		call general_interrupt_handler
 		pop %eax
+
+# Retreive registers' state
 		pop %eax
 		mov %eax, %cr4
 		pop %eax
 		mov %eax, %cr3
 		pop %eax
 		mov %eax, %cr0
-		popfl
 		popal
+
+# Set the segments
+		push %ax
+		mov $(5 * 8) | 3, %ax
+		mov %ax, %ds
+		mov %ax, %es
+		mov %ax, %fs
+		mov %ax, %gs
+		pop %ax
+
 		iret 
 .endm
 

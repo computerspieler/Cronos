@@ -32,6 +32,7 @@
 .align 16
 stack_bottom:
 	.skip STACK_SIZE
+.global stack_top
 stack_top:
 
 .section .text

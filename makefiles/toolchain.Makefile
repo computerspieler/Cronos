@@ -6,7 +6,7 @@ AR=$(TOOLCHAIN_PREFIX)ar
 CC=$(TOOLCHAIN_PREFIX)gcc
 LD=$(TOOLCHAIN_PREFIX)ld
 
-CCFLAGS=-Wall \
+CCFLAGS+=-Wall \
 	-Wextra \
 	-ffreestanding \
 	-fno-exceptions \
@@ -16,7 +16,7 @@ CCFLAGS=-Wall \
 	-DMACHINE_$(BUILD_TARGET_MACHINE)
 ASFLAGS=
 ARFLAGS=rcs
-LDFLAGS=-N
+LDFLAGS+=-N
 
 ifeq ($(BUILD_TYPE),debug)
 	ASFLAGS+=-g -ggdb
